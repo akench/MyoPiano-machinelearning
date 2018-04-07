@@ -23,6 +23,28 @@ import numpy as np
 import pickle
 from PIL import Image
 import matplotlib.pyplot as plt
+import pandas as pd
+import glob
+
+
+num_to_class = {
+	0: 'None',
+	1: 'thumb',
+	2: 'index',
+	3: 'middle',
+	4: 'ring',
+	5: 'pinkie'
+}
+
+class_to_num = {
+    'None': 0,
+    'thumb': 1,
+    'index': 2,
+    'middle': 3,
+    'ring': 4,
+    'pinkie': 5
+}
+
 
 
 def normalize_data(data, return_m_and_std = False):
@@ -61,49 +83,97 @@ def reformat_curr_image(curr_image):
 
 
 def make_data():
-    with open('first.json') as f:    
-        all_data = json.load(f)
 
 
-    emg_data = all_data['emg']['data']
-    timestamps = all_data['emg']['timestamps']
-    timestamps = [int(t) for t in timestamps]
+    none = glob.glob('raw_data/none/emg*.csv')
+    thumb = glob.glob('raw_data/thumb/emg*.csv')
+    index = glob.glob('raw_data/index/emg*.csv')
+    middle = glob.glob('raw_data/middle/emg*.csv')
+    ring = glob.glob('raw_data/ring/emg*.csv')
+    pinkie = glob.glob('raw_data/pinkie/emg*.csv')
 
-    del all_data
+    all_files = [none, thumb, index, middle, ring, pinkie]
+
+    ALL_OF_THE_DATA = []
+    ALL_OF_THE_LABELS = []
+
+    for class_index, file_paths in enumerate(all_files):
+
+        curr_class = num_to_class[class_index]
+        all_data_per_class = []
+
+        for path in file_paths:
+
+            read_data = pd.read_csv(path)
+
+            all_data = read_data.values.tolist()
+            emg_data = [d[1:] for d in all_data]
+            timestamps = [d[0] for d in all_data]
 
 
-    all_image_data = []
 
-    curr_image = []
+            #ignore the first and last two seconds of data
+            emg_data = emg_data[400 : len(emg_data) - 400]
+            timestamps = timestamps[400 : len(timestamps) - 400]
 
-    start_time = timestamps[0]
-    data_index = 0
-    while data_index < len(emg_data):
 
-        if timestamps[data_index] - start_time >= 500000:
+            all_image_data = []
 
-            curr_image = reformat_curr_image(curr_image)
-            all_image_data.append(curr_image)
             curr_image = []
-            start_time = timestamps[data_index]
 
-        else:
-            curr_image += emg_data[data_index]
+            start_time = timestamps[0]
+            data_index = 0
+            while data_index < len(emg_data):
+
+                #half a second
+                if timestamps[data_index] - start_time >= 500000:
+
+                    curr_image = reformat_curr_image(curr_image)
+                    all_image_data.append(curr_image)
+                    curr_image = []
+                    start_time = timestamps[data_index]
+
+                else:
+                    curr_image += emg_data[data_index]
 
 
-        data_index += 1
+                data_index += 1
+
+            #while loop done
+            all_data_per_class += all_image_data
+
+        #end of for loop for all files in that class dir
+        ALL_OF_THE_DATA += all_data_per_class
+        ALL_OF_THE_LABELS += (np.full(len(all_data_per_class), class_index)).tolist()
 
 
-    normalized, mean, std = normalize_data(all_image_data, True)
+    print(len(ALL_OF_THE_DATA))
+    print(len(ALL_OF_THE_LABELS))
+
+
+    normalized, mean, std = normalize_data(ALL_OF_THE_DATA, True)
+
+    with open('data/pop_mean.txt', 'w') as f:
+        for m in mean:
+            f.write(str(m) + '\n')
+
+    with open('data/pop_std.txt', 'w') as f:
+        for s in std:
+            f.write(str(s) + '\n')
+
+
+    pickle.dump(normalized, open('data/all_data.p', 'wb'))
+    pickle.dump(ALL_OF_THE_LABELS, open('data/all_labels.p', 'wb'))
+
 
     # print(normalized[0])
 
-    for x in normalized:
-        to_show = np.resize(x, (100, 8))
+    # for x in normalized:
+    #     to_show = np.resize(x, (100, 8))
 
-        plt.gray()
-        plt.imshow(to_show)
-        plt.show()
+    #     plt.gray()
+    #     plt.imshow(to_show)
+    #     plt.show()
 
     # im = Image.fromarray(to_show)
     # im.show()
@@ -112,6 +182,3 @@ def make_data():
 
 
 make_data()
-
-
-
