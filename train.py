@@ -13,13 +13,13 @@ from data_utils import DataUtil
 
 
 MODEL_NAME = 'myo_piano_model'
-data_placeholder = tf.placeholder(shape = [None, 800], dtype = tf.float32, name='input')
+data_placeholder = tf.placeholder(shape = [None, 100*8], dtype = tf.float32, name='input')
 labels_placeholder = tf.placeholder(shape = [None], dtype = tf.int64)
 keep_prob_placeholder = tf.placeholder(shape = (), dtype = tf.float32, name='keep_prob')
 
 logs_path = "/tmp/myo_log"
 #command to use TENSORBOARD
-#tensorboard --logdir=run1:/tmp/instr/ --port 6006
+#tensorboard --logdir=run1:/tmp/myo_log/ --port 6006
 
 import os
 import glob
@@ -67,7 +67,8 @@ def model(net, keep_prob):
 				net = slim.dropout(net, keep_prob = keep_prob, scope='dropout6')
 				net = slim.fully_connected(net, 6, activation_fn=None, scope='fc6')
 
-				fc6_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'pvg_model/fc6')
+				fc6_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, MODEL_NAME + '/fc6')
+				print(fc6_vars)
 
 				with tf.name_scope('fc6'):
 					tf.summary.histogram('weights', fc6_vars[0])
@@ -82,7 +83,7 @@ def model(net, keep_prob):
 
 def train():
 
-	data_util = DataUtil('data', batch_size = 128, num_epochs = 1)
+	data_util = DataUtil('processed_data', batch_size = 128, num_epochs = 5)
 
 
 
@@ -231,7 +232,7 @@ def main():
 
 	train()
 
-	# export_model([input_node_name, keep_prob_name], output_node_name)
+	export_model([input_node_name, keep_prob_name], output_node_name)
 
 if __name__ == '__main__':
 	main()

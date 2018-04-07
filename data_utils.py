@@ -189,4 +189,4 @@ def prepare_data_to_split():
     split_data('processed_data', data, labels)
 
 
-prepare_data_to_split()
+# prepare_data_to_split()

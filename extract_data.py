@@ -163,7 +163,7 @@ def make_data():
 
     
 
-    
+
 
 
     pickle.dump(ALL_OF_THE_DATA, open('data/all_data.p', 'wb'))
@@ -208,5 +208,5 @@ def augment_data():
     
 
 
-make_data()
-augment_data()
+# make_data()
+# augment_data()

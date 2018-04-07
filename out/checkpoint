@@ -1,0 +1,2 @@
+model_checkpoint_path: "myo_piano_model.chkp"
+all_model_checkpoint_paths: "myo_piano_model.chkp"
