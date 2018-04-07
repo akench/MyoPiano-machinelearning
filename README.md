@@ -1,1 +1,3 @@
-# MyPiano
+# MyoPiano
+
+machine learning repo
