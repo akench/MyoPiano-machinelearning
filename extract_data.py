@@ -25,6 +25,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import pandas as pd
 import glob
+import random
 
 
 num_to_class = {
@@ -166,19 +167,41 @@ def make_data():
     pickle.dump(ALL_OF_THE_LABELS, open('data/all_labels.p', 'wb'))
 
 
-    # print(normalized[0])
 
-    # for x in normalized:
-    #     to_show = np.resize(x, (100, 8))
+def random_scaling(data):
 
-    #     plt.gray()
-    #     plt.imshow(to_show)
-    #     plt.show()
+    for data_index, curr in enumerate(data):
 
-    # im = Image.fromarray(to_show)
-    # im.show()
+        scale = random.uniform(0.8, 1.2)
+
+        for val_index, val in enumerate(curr):
+            data[data_index][val_index] = val * scale
+
+    return data
+        
 
 
+
+def augment_data():
+
+    original_data = pickle.load(open('data/all_data.p', 'rb')).tolist()
+    all_labels = pickle.load(open('data/all_labels.p', 'rb'))
+
+
+    augmented_1 = random_scaling(original_data)
+    augmented_2 = random_scaling(augmented_1)
+    augmented_3 = random_scaling(augmented_2)
+
+
+    augmented_data = original_data + augmented_1 + augmented_2 + augmented_3
+    all_labels = all_labels + all_labels + all_labels + all_labels
+
+    pickle.dump(augmented_data, open('data/all_data.p', 'wb'))
+    pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
+
+
+    
 
 
 make_data()
+augment_data()
