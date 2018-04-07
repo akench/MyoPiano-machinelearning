@@ -142,7 +142,7 @@ class DataUtil:
 
 
 
-def split_data(save_folder, all_data, all_labels, perc_train = 0.72, perc_val = 0.18, perc_test = 0.1):
+def split_data(save_folder, all_data, all_labels, perc_train = 0.80, perc_val = 0.1, perc_test = 0.1):
     num_data = len(all_data)
     num_train = int(perc_train * num_data)
     num_val = int(perc_val * num_data)
@@ -165,3 +165,28 @@ def split_data(save_folder, all_data, all_labels, perc_train = 0.72, perc_val = 
     test_labels = all_labels[curr:]
     pickle.dump(test_data, open(save_folder + '/test_data.p', 'wb'))
     pickle.dump(test_labels, open(save_folder + '/test_labels.p', 'wb'))
+
+
+def simultaneous_shuffle(A, B):
+
+    C = list(zip(A, B))
+    random.shuffle(C)
+
+    A, B = zip(*C)
+
+    return A,B
+
+
+
+
+def prepare_data_to_split():
+
+    data = pickle.load(open('data/all_data.p', 'rb'))
+    labels = pickle.load(open('data/all_labels.p', 'rb'))
+
+    data, labels = simultaneous_shuffle(data, labels)
+
+    split_data('processed_data', data, labels)
+
+
+prepare_data_to_split()

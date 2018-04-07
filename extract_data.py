@@ -148,11 +148,8 @@ def make_data():
         ALL_OF_THE_LABELS += (np.full(len(all_data_per_class), class_index)).tolist()
 
 
-    print(len(ALL_OF_THE_DATA))
-    print(len(ALL_OF_THE_LABELS))
 
-
-    normalized, mean, std = normalize_data(ALL_OF_THE_DATA, True)
+    _, mean, std = normalize_data(ALL_OF_THE_DATA, True)
 
     with open('data/pop_mean.txt', 'w') as f:
         for m in mean:
@@ -163,7 +160,13 @@ def make_data():
             f.write(str(s) + '\n')
 
 
-    pickle.dump(normalized, open('data/all_data.p', 'wb'))
+
+    
+
+    
+
+
+    pickle.dump(ALL_OF_THE_DATA, open('data/all_data.p', 'wb'))
     pickle.dump(ALL_OF_THE_LABELS, open('data/all_labels.p', 'wb'))
 
 
@@ -184,7 +187,7 @@ def random_scaling(data):
 
 def augment_data():
 
-    original_data = pickle.load(open('data/all_data.p', 'rb')).tolist()
+    original_data = pickle.load(open('data/all_data.p', 'rb'))
     all_labels = pickle.load(open('data/all_labels.p', 'rb'))
 
 
@@ -198,6 +201,8 @@ def augment_data():
 
     pickle.dump(augmented_data, open('data/all_data.p', 'wb'))
     pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
+
+    print(len(augmented_data))
 
 
     
