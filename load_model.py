@@ -80,4 +80,4 @@ def make_prediction(class_name):
             print(labels[n])
 
 
-make_prediction('pinkie')
+make_prediction('middle')

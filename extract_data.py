@@ -202,7 +202,7 @@ def augment_data():
     pickle.dump(augmented_data, open('data/all_data.p', 'wb'))
     pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
 
-    print(len(augmented_data))
+    print('augmented',len(augmented_data))
 
 
 
@@ -226,7 +226,6 @@ def normalize_using_pop_data(data):
         normalized_data.append(normalized_img)
 
 
-    print(normalized_data[0])
     return normalized_data
 
 
