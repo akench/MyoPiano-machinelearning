@@ -205,6 +205,84 @@ def augment_data():
     print(len(augmented_data))
 
 
+
+
+def normalize_using_pop_data(data):
+
+    with open('data/pop_mean.txt', 'r') as f:
+        mean_list = [float(m) for m in f.readlines()]
+    with open('data/pop_std.txt', 'r') as f:
+        std_list = [float(s) for s in f.readlines()]
+
+    normalized_data = []
+    
+    for img in data:
+
+        normalized_img = []
+        for i, val in enumerate(img):
+
+            normalized_img.append((val - mean_list[i]) / std_list[i])
+
+        normalized_data.append(normalized_img)
+
+
+    print(normalized_data[0])
+    return normalized_data
+
+
+
+
+
+
+def make_data_per_class_testing(class_name):
+
+    file_paths = glob.glob('test_data/' + class_name + '/emg*.csv')
+
+    ALL_IMAGES = []
+
+    #list of csv files
+    for path in file_paths:
+
+        all_data = pd.read_csv(path).values.tolist()
+
+        emg_data = [d[1:] for d in all_data]
+        timestamps = [d[0] for d in all_data]
+
+
+
+        #ignore the first and last one second of data
+        emg_data = emg_data[200 : len(emg_data) - 200]
+        timestamps = timestamps[200 : len(timestamps) - 200]
+
+
+        curr_image = []
+
+        start_time = timestamps[0]
+        data_index = 0
+
+        #rows in csv file
+        while data_index < len(emg_data):
+
+            #half a second
+            if timestamps[data_index] - start_time >= 500000:
+
+                curr_image = reformat_curr_image(curr_image)
+                ALL_IMAGES.append(curr_image)
+                curr_image = []
+                start_time = timestamps[data_index]
+
+            else:
+                curr_image += emg_data[data_index]
+
+
+            data_index += 1
+
+    
+    ALL_IMAGES = normalize_using_pop_data(ALL_IMAGES)
+    pickle.dump(ALL_IMAGES, open('test_data/' + class_name + '.p', 'wb'))
+
+
+# make_data_per_class_testing('none')
     
 
 
