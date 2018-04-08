@@ -187,22 +187,21 @@ def random_scaling(data):
 
 def augment_data():
 
-    # original_data = pickle.load(open('data/all_data.p', 'rb'))
-    # all_labels = pickle.load(open('data/all_labels.p', 'rb'))
+    original_data = pickle.load(open('data/all_data.p', 'rb'))
+    all_labels = pickle.load(open('data/all_labels.p', 'rb'))
 
 
-    # augmented_1 = random_scaling(original_data)
-    # augmented_2 = random_scaling(augmented_1)
+    augmented_1 = random_scaling(original_data)
 
-    # augmented_data = original_data + augmented_1 + augmented_2
-    # all_labels = all_labels + all_labels + all_labels
-
-
-    # pickle.dump(original_data, open('data/all_data.p', 'wb'))
-    # pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
+    augmented_data = original_data + augmented_1
+    all_labels = all_labels + all_labels
 
 
-    # print('augmented',len(augmented_data))
+    pickle.dump(original_data, open('data/all_data.p', 'wb'))
+    pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
+
+
+    print('augmented',len(augmented_data))
 
     return
 
@@ -334,9 +333,9 @@ def prepare_data_to_split():
 
 
 
-make_data()
-augment_data()
-prepare_data_to_split()
+# make_data()
+# augment_data()
+# prepare_data_to_split()
 
 # for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
 #     make_data_per_class_testing(x)

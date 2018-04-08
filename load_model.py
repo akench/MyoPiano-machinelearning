@@ -11,7 +11,6 @@ from data_utils import DataUtil
 
 data_placeholder = tf.placeholder(shape = [None, 100*8], dtype = tf.float32)
 label_placeholder = tf.placeholder(shape=[None], dtype = tf.int64)
-keep_prob_placeholder = tf.placeholder(shape = (), dtype = tf.float32, name='keep_prob')
 
 labels = {
     0: 'none',
@@ -34,7 +33,7 @@ labels_1 = {
 
 MODEL_NAME = 'myo_piano_model'
 
-def model(net, keep_prob):
+def model(net):
     net = tf.reshape(net, [-1, 100, 8, 1])
 
 
@@ -53,7 +52,6 @@ def model(net, keep_prob):
                 net = slim.batch_norm(net)
                 net = slim.flatten(net, scope='flatten4')
                 net = slim.fully_connected(net, 500, activation_fn = tf.nn.sigmoid, scope='fc5')
-                net = slim.dropout(net, keep_prob = keep_prob, scope='dropout6')
                 net = slim.fully_connected(net, 6, activation_fn=None, scope='fc6')
 
     return net
@@ -63,7 +61,7 @@ def model(net, keep_prob):
 
 def make_prediction(class_name):
     data = pickle.load(open('test_data/' + class_name + '.p', 'rb'))
-    prediction = model(data_placeholder, keep_prob_placeholder)
+    prediction = model(data_placeholder)
 
     print(len(data) , 'is length of dATA!!!')
 
@@ -72,7 +70,7 @@ def make_prediction(class_name):
         saver = tf.train.Saver()
         saver.restore(sess, 'out/myo_piano_model.chkp')
 
-        logits = sess.run(prediction, feed_dict={data_placeholder: data, keep_prob_placeholder: 1.0})
+        logits = sess.run(prediction, feed_dict={data_placeholder: data})
         logits = tf.squeeze(logits)
         logits_arr = sess.run(logits)
 
@@ -95,7 +93,7 @@ def make_prediction(class_name):
         for label in n:
             if label == labels_1[class_name]:
                 sum += 1
-            elif label=='none':
+            elif label==0:
                 nones += 1
             
         
