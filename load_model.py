@@ -28,19 +28,18 @@ MODEL_NAME = 'myo_piano_model'
 def model(net, keep_prob):
 	net = tf.reshape(net, [-1, 100, 8, 1])
 
-	tf.summary.image('input', net, 10)
 
 	with tf.variable_scope(MODEL_NAME):
 		with slim.arg_scope([slim.conv2d], padding='SAME', weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
 			with slim.arg_scope([slim.fully_connected], weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
 				
-				net = slim.conv2d(net, 100, [5,5], scope='conv1')
+				net = slim.conv2d(net, 100, [20,1], scope='conv1')
 				net = slim.max_pool2d(net, [2,2], scope='pool1')
 				net = slim.batch_norm(net)
-				net = slim.conv2d(net, 50, [5,5], scope='conv2')
+				net = slim.conv2d(net, 50, [20,1], scope='conv2')
 				net = slim.max_pool2d(net, [2,2], scope='pool2')
 				net = slim.batch_norm(net)
-				net = slim.conv2d(net, 20, [5,5], scope='conv3')
+				net = slim.conv2d(net, 20, [20,1], scope='conv3')
 				net = slim.max_pool2d(net, [2,2], scope='pool3')
 				net = slim.batch_norm(net)
 				net = slim.flatten(net, scope='flatten4')

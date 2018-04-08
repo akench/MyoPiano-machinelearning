@@ -134,6 +134,8 @@ def make_data():
                     curr_image = []
                     start_time = timestamps[data_index]
 
+                    data_index += random.randint(10, 50)
+
                 else:
                     curr_image += emg_data[data_index]
 
@@ -193,11 +195,9 @@ def augment_data():
 
     augmented_1 = random_scaling(original_data)
     augmented_2 = random_scaling(augmented_1)
-    augmented_3 = random_scaling(augmented_2)
 
-
-    augmented_data = original_data + augmented_1 + augmented_2 + augmented_3
-    all_labels = all_labels + all_labels + all_labels + all_labels
+    augmented_data = original_data + augmented_1 + augmented_2
+    all_labels = all_labels + all_labels + all_labels
 
     pickle.dump(augmented_data, open('data/all_data.p', 'wb'))
     pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
@@ -250,8 +250,8 @@ def make_data_per_class_testing(class_name):
 
 
         #ignore the first and last one second of data
-        emg_data = emg_data[200 : len(emg_data) - 200]
-        timestamps = timestamps[200 : len(timestamps) - 200]
+        emg_data = emg_data[250 : len(emg_data) - 200]
+        timestamps = timestamps[250 : len(timestamps) - 200]
 
 
         curr_image = []
@@ -281,9 +281,59 @@ def make_data_per_class_testing(class_name):
     pickle.dump(ALL_IMAGES, open('test_data/' + class_name + '.p', 'wb'))
 
 
-# make_data_per_class_testing('none')
-    
 
 
-# make_data()
-# augment_data()
+def split_data(save_folder, all_data, all_labels, perc_train = 0.80, perc_val = 0.1, perc_test = 0.1):
+    num_data = len(all_data)
+    num_train = int(perc_train * num_data)
+    num_val = int(perc_val * num_data)
+
+
+    curr = 0
+    train_data = all_data[curr : num_train]
+    train_labels = all_labels[curr : num_train]
+    pickle.dump(train_data, open(save_folder + '/train_data.p', 'wb'))
+    pickle.dump(train_labels, open(save_folder + '/train_labels.p', 'wb'))
+
+    curr += num_train
+    val_data = all_data[curr : curr + num_val]
+    val_labels = all_labels[curr : curr + num_val]
+    pickle.dump(val_data, open(save_folder + '/val_data.p', 'wb'))
+    pickle.dump(val_labels, open(save_folder + '/val_labels.p', 'wb'))
+
+    curr += num_val
+    test_data = all_data[curr:]
+    test_labels = all_labels[curr:]
+    pickle.dump(test_data, open(save_folder + '/test_data.p', 'wb'))
+    pickle.dump(test_labels, open(save_folder + '/test_labels.p', 'wb'))
+
+
+def simultaneous_shuffle(A, B):
+
+    C = list(zip(A, B))
+    random.shuffle(C)
+
+    A, B = zip(*C)
+
+    return A,B
+
+
+
+
+def prepare_data_to_split():
+
+    data = pickle.load(open('data/all_data.p', 'rb'))
+    labels = pickle.load(open('data/all_labels.p', 'rb'))
+
+    data, labels = simultaneous_shuffle(data, labels)
+
+    split_data('processed_data', data, labels)
+
+
+
+make_data()
+augment_data()
+prepare_data_to_split()
+
+for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
+    make_data_per_class_testing(x)

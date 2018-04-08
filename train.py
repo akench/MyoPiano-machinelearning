@@ -191,38 +191,6 @@ def train():
 
 
 
-def export_model(input_node_names, output_node_name):
-	freeze_graph.freeze_graph('out/' + MODEL_NAME + '.pbtxt', None, False,
-		'out/' + MODEL_NAME + '.chkp', output_node_name, "save/restore_all",
-		"save/Const:0", 'out/frozen_' + MODEL_NAME + '.pb', True, "")
-
-	input_graph_def = tf.GraphDef()
-	with tf.gfile.Open('out/frozen_' + MODEL_NAME + '.pb', "rb") as f:
-		input_graph_def.ParseFromString(f.read())
-
-	output_graph_def = optimize_for_inference_lib.optimize_for_inference(
-			input_graph_def, input_node_names, [output_node_name],
-			tf.float32.as_datatype_enum)
-
-	with tf.gfile.FastGFile('out/opt_' + MODEL_NAME + '.pb', "wb") as f:
-		f.write(output_graph_def.SerializeToString())
-
-
-	images_train = list(pickle.load(open('processed_data/train_data.p', 'rb')))
-	_, mean, std = normalize_data(images_train, return_m_and_std = True)
-	mean = mean.flatten()
-	std = std.flatten()
-	with open('popMean.txt', 'w') as f:
-		for m in mean:
-			f.write(str(m) + "\n")
-
-	with open('popSTD.txt', 'w') as f:
-		for s in std:
-			f.write(str(s) + "\n")
-
-	print("graph saved!")
-
-
 
 def main():
 	if not path.exists('out'):
@@ -233,8 +201,6 @@ def main():
 	keep_prob_name = 'keep_prob'
 
 	train()
-
-	# export_model([input_node_name, keep_prob_name], output_node_name)
 
 if __name__ == '__main__':
 	main()
