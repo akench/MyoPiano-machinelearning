@@ -138,9 +138,7 @@ def make_data():
 
                 else:
                     curr_image += emg_data[data_index]
-
-
-                data_index += 1
+                    data_index += 1
 
             #while loop done
             all_data_per_class += all_image_data
@@ -160,11 +158,6 @@ def make_data():
     with open('data/pop_std.txt', 'w') as f:
         for s in std:
             f.write(str(s) + '\n')
-
-
-
-    
-
 
 
 
