@@ -166,7 +166,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
+        tensor_content: "2\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
       }
     }
   }
@@ -224,7 +224,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.36055514216423035
+        float_val: 0.2280350923538208
       }
     }
   }
@@ -334,7 +334,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 50
         }
         dim {
           size: 1
@@ -1655,7 +1655,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
+        tensor_content: "\036\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
       }
     }
   }
@@ -1713,7 +1713,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.036055512726306915
+        float_val: 0.029439203441143036
       }
     }
   }
@@ -1823,7 +1823,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 30
         }
         dim {
           size: 1
@@ -4607,1453 +4607,9 @@ node {
   }
 }
 node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal/shape"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\n\000\000\000\001\000\000\000\024\000\000\000\005\000\000\000"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal/mean"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal/stddev"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.1140175461769104
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal/TruncatedNormal"
-  op: "TruncatedNormal"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal/shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 0
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal/mul"
-  op: "Mul"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal/TruncatedNormal"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal/stddev"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Initializer/truncated_normal"
-  op: "Add"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal/mul"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal/mean"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 10
-        }
-        dim {
-          size: 1
-        }
-        dim {
-          size: 20
-        }
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/weights"
-  input: "myo_piano_model/conv4/weights/Initializer/truncated_normal"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/weights"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/kernel/Regularizer/l2_regularizer/scale"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.05000000074505806
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/kernel/Regularizer/l2_regularizer/L2Loss"
-  op: "L2Loss"
-  input: "myo_piano_model/conv4/weights/read"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/kernel/Regularizer/l2_regularizer"
-  op: "Mul"
-  input: "myo_piano_model/conv4/kernel/Regularizer/l2_regularizer/scale"
-  input: "myo_piano_model/conv4/kernel/Regularizer/l2_regularizer/L2Loss"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/conv4/biases/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/conv4/biases/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/biases"
-  input: "myo_piano_model/conv4/biases/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/biases"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/dilation_rate"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 2
-          }
-        }
-        tensor_content: "\001\000\000\000\001\000\000\000"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/Conv2D"
-  op: "Conv2D"
-  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
-  input: "myo_piano_model/conv4/weights/read"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-  attr {
-    key: "dilations"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "padding"
-    value {
-      s: "SAME"
-    }
-  }
-  attr {
-    key: "strides"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "use_cudnn_on_gpu"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/BiasAdd"
-  op: "BiasAdd"
-  input: "myo_piano_model/conv4/Conv2D"
-  input: "myo_piano_model/conv4/biases/read"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/Relu"
-  op: "Relu"
-  input: "myo_piano_model/conv4/BiasAdd"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/Const"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-          dim {
-            size: 5
-          }
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Assign"
-  op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta"
-  input: "myo_piano_model/BatchNorm_3/beta/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/beta"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean/Assign"
-  op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
-  input: "myo_piano_model/BatchNorm_3/moving_mean/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_mean/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones"
-  op: "Fill"
-  input: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones/shape_as_tensor"
-  input: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance/Assign"
-  op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
-  input: "myo_piano_model/BatchNorm_3/moving_variance/Initializer/ones"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/moving_variance/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/Const_1"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/Const_2"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/FusedBatchNorm"
-  op: "FusedBatchNorm"
-  input: "myo_piano_model/conv4/Relu"
-  input: "myo_piano_model/BatchNorm_3/Const"
-  input: "myo_piano_model/BatchNorm_3/beta/read"
-  input: "myo_piano_model/BatchNorm_3/Const_1"
-  input: "myo_piano_model/BatchNorm_3/Const_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-  attr {
-    key: "epsilon"
-    value {
-      f: 0.0010000000474974513
-    }
-  }
-  attr {
-    key: "is_training"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/Const_3"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0010000000474974513
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg/Sub"
-  op: "Sub"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg/read"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg/Mul"
-  op: "Mul"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg/Sub"
-  input: "myo_piano_model/BatchNorm_3/Const_3"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg"
-  op: "AssignSub"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg/Mul"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/Sub"
-  op: "Sub"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/read"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/Mul"
-  op: "Mul"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/Sub"
-  input: "myo_piano_model/BatchNorm_3/Const_3"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1"
-  op: "AssignSub"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
-  input: "myo_piano_model/BatchNorm_3/AssignMovingAvg_1/Mul"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: false
-    }
-  }
-}
-node {
   name: "myo_piano_model/flatten4/flatten/Shape"
   op: "Shape"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm"
+  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
   attr {
     key: "T"
     value {
@@ -6237,7 +4793,7 @@ node {
 node {
   name: "myo_piano_model/flatten4/flatten/Reshape"
   op: "Reshape"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm"
+  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
   input: "myo_piano_model/flatten4/flatten/Reshape/shape"
   attr {
     key: "T"
@@ -6279,7 +4835,7 @@ node {
             size: 2
           }
         }
-        tensor_content: "<\000\000\000\364\001\000\000"
+        tensor_content: "\360\000\000\000\364\001\000\000"
       }
     }
   }
@@ -6337,7 +4893,7 @@ node {
         dtype: DT_FLOAT
         tensor_shape {
         }
-        float_val: 0.20816659927368164
+        float_val: 0.10408329963684082
       }
     }
   }
@@ -6447,7 +5003,7 @@ node {
     value {
       shape {
         dim {
-          size: 60
+          size: 240
         }
         dim {
           size: 500
@@ -8210,7 +6766,7 @@ node {
 node {
   name: "train_step/gradients/myo_piano_model/flatten4/flatten/Reshape_grad/Shape"
   op: "Shape"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm"
+  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
   attr {
     key: "T"
     value {
@@ -8245,7 +6801,7 @@ node {
 node {
   name: "train_step/gradients/zeros_like_1"
   op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:1"
+  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:1"
   attr {
     key: "T"
     value {
@@ -8256,7 +6812,7 @@ node {
 node {
   name: "train_step/gradients/zeros_like_2"
   op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:2"
+  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:2"
   attr {
     key: "T"
     value {
@@ -8267,463 +6823,6 @@ node {
 node {
   name: "train_step/gradients/zeros_like_3"
   op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:3"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "train_step/gradients/zeros_like_4"
-  op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:4"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-  op: "FusedBatchNormGrad"
-  input: "train_step/gradients/myo_piano_model/flatten4/flatten/Reshape_grad/Reshape"
-  input: "myo_piano_model/conv4/Relu"
-  input: "myo_piano_model/BatchNorm_3/Const"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:3"
-  input: "myo_piano_model/BatchNorm_3/FusedBatchNorm:4"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-  attr {
-    key: "epsilon"
-    value {
-      f: 0.0010000000474974513
-    }
-  }
-  attr {
-    key: "is_training"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad:1"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency_2"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad:2"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency_3"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad:3"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency_4"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad:4"
-  input: "^train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/FusedBatchNormGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Relu_grad/ReluGrad"
-  op: "ReluGrad"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency"
-  input: "myo_piano_model/conv4/Relu"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/BiasAddGrad"
-  op: "BiasAddGrad"
-  input: "train_step/gradients/myo_piano_model/conv4/Relu_grad/ReluGrad"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^train_step/gradients/myo_piano_model/conv4/Relu_grad/ReluGrad"
-  input: "^train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/BiasAddGrad"
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/conv4/Relu_grad/ReluGrad"
-  input: "^train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/conv4/Relu_grad/ReluGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/BiasAddGrad"
-  input: "^train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/BiasAddGrad"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/ShapeN"
-  op: "ShapeN"
-  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
-  input: "myo_piano_model/conv4/weights/read"
-  attr {
-    key: "N"
-    value {
-      i: 2
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Const"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\n\000\000\000\001\000\000\000\024\000\000\000\005\000\000\000"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropInput"
-  op: "Conv2DBackpropInput"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/ShapeN"
-  input: "myo_piano_model/conv4/weights/read"
-  input: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/control_dependency"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-  attr {
-    key: "dilations"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "padding"
-    value {
-      s: "SAME"
-    }
-  }
-  attr {
-    key: "strides"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "use_cudnn_on_gpu"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropFilter"
-  op: "Conv2DBackpropFilter"
-  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Const"
-  input: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/control_dependency"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "data_format"
-    value {
-      s: "NHWC"
-    }
-  }
-  attr {
-    key: "dilations"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "padding"
-    value {
-      s: "SAME"
-    }
-  }
-  attr {
-    key: "strides"
-    value {
-      list {
-        i: 1
-        i: 1
-        i: 1
-        i: 1
-      }
-    }
-  }
-  attr {
-    key: "use_cudnn_on_gpu"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropInput"
-  input: "^train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropFilter"
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropInput"
-  input: "^train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropInput"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropFilter"
-  input: "^train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@train_step/gradients/myo_piano_model/conv4/Conv2D_grad/Conv2DBackpropFilter"
-      }
-    }
-  }
-}
-node {
-  name: "train_step/gradients/zeros_like_5"
-  op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "train_step/gradients/zeros_like_6"
-  op: "ZerosLike"
-  input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "train_step/gradients/zeros_like_7"
-  op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:3"
   attr {
     key: "T"
@@ -8733,7 +6832,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_8"
+  name: "train_step/gradients/zeros_like_4"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:4"
   attr {
@@ -8746,7 +6845,7 @@ node {
 node {
   name: "train_step/gradients/myo_piano_model/BatchNorm_2/FusedBatchNorm_grad/FusedBatchNormGrad"
   op: "FusedBatchNormGrad"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/control_dependency"
+  input: "train_step/gradients/myo_piano_model/flatten4/flatten/Reshape_grad/Reshape"
   input: "myo_piano_model/pool3/MaxPool"
   input: "myo_piano_model/BatchNorm_2/Const"
   input: "myo_piano_model/BatchNorm_2/FusedBatchNorm:3"
@@ -9204,7 +7303,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_9"
+  name: "train_step/gradients/zeros_like_5"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_1/FusedBatchNorm:1"
   attr {
@@ -9215,7 +7314,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_10"
+  name: "train_step/gradients/zeros_like_6"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_1/FusedBatchNorm:2"
   attr {
@@ -9226,7 +7325,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_11"
+  name: "train_step/gradients/zeros_like_7"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_1/FusedBatchNorm:3"
   attr {
@@ -9237,7 +7336,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_12"
+  name: "train_step/gradients/zeros_like_8"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm_1/FusedBatchNorm:4"
   attr {
@@ -9550,7 +7649,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
+        tensor_content: "\036\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
       }
     }
   }
@@ -9708,7 +7807,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_13"
+  name: "train_step/gradients/zeros_like_9"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm/FusedBatchNorm:1"
   attr {
@@ -9719,7 +7818,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_14"
+  name: "train_step/gradients/zeros_like_10"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm/FusedBatchNorm:2"
   attr {
@@ -9730,7 +7829,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_15"
+  name: "train_step/gradients/zeros_like_11"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm/FusedBatchNorm:3"
   attr {
@@ -9741,7 +7840,7 @@ node {
   }
 }
 node {
-  name: "train_step/gradients/zeros_like_16"
+  name: "train_step/gradients/zeros_like_12"
   op: "ZerosLike"
   input: "myo_piano_model/BatchNorm/FusedBatchNorm:4"
   attr {
@@ -10054,7 +8153,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
+        tensor_content: "2\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
       }
     }
   }
@@ -10472,7 +8571,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
+        tensor_content: "2\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
       }
     }
   }
@@ -10560,7 +8659,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 50
         }
         dim {
           size: 1
@@ -10659,7 +8758,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
+        tensor_content: "2\000\000\000\001\000\000\000\001\000\000\000d\000\000\000"
       }
     }
   }
@@ -10747,7 +8846,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 50
         }
         dim {
           size: 1
@@ -11558,7 +9657,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
+        tensor_content: "\036\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
       }
     }
   }
@@ -11646,7 +9745,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 30
         }
         dim {
           size: 1
@@ -11745,7 +9844,7 @@ node {
             size: 4
           }
         }
-        tensor_content: "\024\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
+        tensor_content: "\036\000\000\000\001\000\000\000d\000\000\0002\000\000\000"
       }
     }
   }
@@ -11833,7 +9932,7 @@ node {
     value {
       shape {
         dim {
-          size: 20
+          size: 30
         }
         dim {
           size: 1
@@ -13704,1092 +11803,6 @@ node {
   }
 }
 node {
-  name: "myo_piano_model/conv4/weights/Adam/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\n\000\000\000\001\000\000\000\024\000\000\000\005\000\000\000"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/conv4/weights/Adam/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/conv4/weights/Adam/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 10
-        }
-        dim {
-          size: 1
-        }
-        dim {
-          size: 20
-        }
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/weights/Adam"
-  input: "myo_piano_model/conv4/weights/Adam/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/weights/Adam"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 4
-          }
-        }
-        tensor_content: "\n\000\000\000\001\000\000\000\024\000\000\000\005\000\000\000"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 10
-        }
-        dim {
-          size: 1
-        }
-        dim {
-          size: 20
-        }
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/weights/Adam_1"
-  input: "myo_piano_model/conv4/weights/Adam_1/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/weights/Adam_1/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/weights/Adam_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/conv4/biases/Adam/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/conv4/biases/Adam/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/biases/Adam"
-  input: "myo_piano_model/conv4/biases/Adam/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/biases/Adam"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1/Assign"
-  op: "Assign"
-  input: "myo_piano_model/conv4/biases/Adam_1"
-  input: "myo_piano_model/conv4/biases/Adam_1/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/conv4/biases/Adam_1/read"
-  op: "Identity"
-  input: "myo_piano_model/conv4/biases/Adam_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam/Assign"
-  op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros/shape_as_tensor"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-            size: 1
-          }
-        }
-        int_val: 5
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros"
-  op: "Fill"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros/shape_as_tensor"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "index_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-  op: "VariableV2"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "container"
-    value {
-      s: ""
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "shape"
-    value {
-      shape {
-        dim {
-          size: 5
-        }
-      }
-    }
-  }
-  attr {
-    key: "shared_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1/Assign"
-  op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1/Initializer/zeros"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "myo_piano_model/BatchNorm_3/beta/Adam_1/read"
-  op: "Identity"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-}
-node {
   name: "myo_piano_model/fc5/weights/Adam/Initializer/zeros/shape_as_tensor"
   op: "Const"
   attr {
@@ -14816,7 +11829,7 @@ node {
             size: 2
           }
         }
-        tensor_content: "<\000\000\000\364\001\000\000"
+        tensor_content: "\360\000\000\000\364\001\000\000"
       }
     }
   }
@@ -14904,7 +11917,7 @@ node {
     value {
       shape {
         dim {
-          size: 60
+          size: 240
         }
         dim {
           size: 500
@@ -14997,7 +12010,7 @@ node {
             size: 2
           }
         }
-        tensor_content: "<\000\000\000\364\001\000\000"
+        tensor_content: "\360\000\000\000\364\001\000\000"
       }
     }
   }
@@ -15085,7 +12098,7 @@ node {
     value {
       shape {
         dim {
-          size: 60
+          size: 240
         }
         dim {
           size: 500
@@ -16670,126 +13683,6 @@ node {
   }
 }
 node {
-  name: "train_step/Adam/update_myo_piano_model/conv4/weights/ApplyAdam"
-  op: "ApplyAdam"
-  input: "myo_piano_model/conv4/weights"
-  input: "myo_piano_model/conv4/weights/Adam"
-  input: "myo_piano_model/conv4/weights/Adam_1"
-  input: "train_step/beta1_power/read"
-  input: "train_step/beta2_power/read"
-  input: "train_step/Adam/learning_rate"
-  input: "train_step/Adam/beta1"
-  input: "train_step/Adam/beta2"
-  input: "train_step/Adam/epsilon"
-  input: "train_step/gradients/myo_piano_model/conv4/Conv2D_grad/tuple/control_dependency_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: false
-    }
-  }
-  attr {
-    key: "use_nesterov"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "train_step/Adam/update_myo_piano_model/conv4/biases/ApplyAdam"
-  op: "ApplyAdam"
-  input: "myo_piano_model/conv4/biases"
-  input: "myo_piano_model/conv4/biases/Adam"
-  input: "myo_piano_model/conv4/biases/Adam_1"
-  input: "train_step/beta1_power/read"
-  input: "train_step/beta2_power/read"
-  input: "train_step/Adam/learning_rate"
-  input: "train_step/Adam/beta1"
-  input: "train_step/Adam/beta2"
-  input: "train_step/Adam/epsilon"
-  input: "train_step/gradients/myo_piano_model/conv4/BiasAdd_grad/tuple/control_dependency_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/conv4/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: false
-    }
-  }
-  attr {
-    key: "use_nesterov"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "train_step/Adam/update_myo_piano_model/BatchNorm_3/beta/ApplyAdam"
-  op: "ApplyAdam"
-  input: "myo_piano_model/BatchNorm_3/beta"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-  input: "train_step/beta1_power/read"
-  input: "train_step/beta2_power/read"
-  input: "train_step/Adam/learning_rate"
-  input: "train_step/Adam/beta1"
-  input: "train_step/Adam/beta2"
-  input: "train_step/Adam/epsilon"
-  input: "train_step/gradients/myo_piano_model/BatchNorm_3/FusedBatchNorm_grad/tuple/control_dependency_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: false
-    }
-  }
-  attr {
-    key: "use_nesterov"
-    value {
-      b: false
-    }
-  }
-}
-node {
   name: "train_step/Adam/update_myo_piano_model/fc5/weights/ApplyAdam"
   op: "ApplyAdam"
   input: "myo_piano_model/fc5/weights"
@@ -16963,9 +13856,6 @@ node {
   input: "^train_step/Adam/update_myo_piano_model/conv3/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/conv3/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/BatchNorm_2/beta/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/weights/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/biases/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/BatchNorm_3/beta/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc6/weights/ApplyAdam"
@@ -17031,9 +13921,6 @@ node {
   input: "^train_step/Adam/update_myo_piano_model/conv3/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/conv3/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/BatchNorm_2/beta/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/weights/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/biases/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/BatchNorm_3/beta/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc6/weights/ApplyAdam"
@@ -17097,9 +13984,6 @@ node {
   input: "^train_step/Adam/update_myo_piano_model/conv3/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/conv3/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/BatchNorm_2/beta/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/weights/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/conv4/biases/ApplyAdam"
-  input: "^train_step/Adam/update_myo_piano_model/BatchNorm_3/beta/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/weights/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc5/biases/ApplyAdam"
   input: "^train_step/Adam/update_myo_piano_model/fc6/weights/ApplyAdam"
@@ -17345,7 +14229,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 58
+            size: 47
           }
         }
         string_val: "myo_piano_model/BatchNorm/beta"
@@ -17363,11 +14247,6 @@ node {
         string_val: "myo_piano_model/BatchNorm_2/beta/Adam_1"
         string_val: "myo_piano_model/BatchNorm_2/moving_mean"
         string_val: "myo_piano_model/BatchNorm_2/moving_variance"
-        string_val: "myo_piano_model/BatchNorm_3/beta"
-        string_val: "myo_piano_model/BatchNorm_3/beta/Adam"
-        string_val: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-        string_val: "myo_piano_model/BatchNorm_3/moving_mean"
-        string_val: "myo_piano_model/BatchNorm_3/moving_variance"
         string_val: "myo_piano_model/conv1/biases"
         string_val: "myo_piano_model/conv1/biases/Adam"
         string_val: "myo_piano_model/conv1/biases/Adam_1"
@@ -17386,12 +14265,6 @@ node {
         string_val: "myo_piano_model/conv3/weights"
         string_val: "myo_piano_model/conv3/weights/Adam"
         string_val: "myo_piano_model/conv3/weights/Adam_1"
-        string_val: "myo_piano_model/conv4/biases"
-        string_val: "myo_piano_model/conv4/biases/Adam"
-        string_val: "myo_piano_model/conv4/biases/Adam_1"
-        string_val: "myo_piano_model/conv4/weights"
-        string_val: "myo_piano_model/conv4/weights/Adam"
-        string_val: "myo_piano_model/conv4/weights/Adam_1"
         string_val: "myo_piano_model/fc5/biases"
         string_val: "myo_piano_model/fc5/biases/Adam"
         string_val: "myo_piano_model/fc5/biases/Adam_1"
@@ -17426,20 +14299,9 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 58
+            size: 47
           }
         }
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
         string_val: ""
         string_val: ""
         string_val: ""
@@ -17512,11 +14374,6 @@ node {
   input: "myo_piano_model/BatchNorm_2/beta/Adam_1"
   input: "myo_piano_model/BatchNorm_2/moving_mean"
   input: "myo_piano_model/BatchNorm_2/moving_variance"
-  input: "myo_piano_model/BatchNorm_3/beta"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
   input: "myo_piano_model/conv1/biases"
   input: "myo_piano_model/conv1/biases/Adam"
   input: "myo_piano_model/conv1/biases/Adam_1"
@@ -17535,12 +14392,6 @@ node {
   input: "myo_piano_model/conv3/weights"
   input: "myo_piano_model/conv3/weights/Adam"
   input: "myo_piano_model/conv3/weights/Adam_1"
-  input: "myo_piano_model/conv4/biases"
-  input: "myo_piano_model/conv4/biases/Adam"
-  input: "myo_piano_model/conv4/biases/Adam_1"
-  input: "myo_piano_model/conv4/weights"
-  input: "myo_piano_model/conv4/weights/Adam"
-  input: "myo_piano_model/conv4/weights/Adam_1"
   input: "myo_piano_model/fc5/biases"
   input: "myo_piano_model/fc5/biases/Adam"
   input: "myo_piano_model/fc5/biases/Adam_1"
@@ -17559,17 +14410,6 @@ node {
     key: "dtypes"
     value {
       list {
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
@@ -17658,7 +14498,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 58
+            size: 47
           }
         }
         string_val: "myo_piano_model/BatchNorm/beta"
@@ -17676,11 +14516,6 @@ node {
         string_val: "myo_piano_model/BatchNorm_2/beta/Adam_1"
         string_val: "myo_piano_model/BatchNorm_2/moving_mean"
         string_val: "myo_piano_model/BatchNorm_2/moving_variance"
-        string_val: "myo_piano_model/BatchNorm_3/beta"
-        string_val: "myo_piano_model/BatchNorm_3/beta/Adam"
-        string_val: "myo_piano_model/BatchNorm_3/beta/Adam_1"
-        string_val: "myo_piano_model/BatchNorm_3/moving_mean"
-        string_val: "myo_piano_model/BatchNorm_3/moving_variance"
         string_val: "myo_piano_model/conv1/biases"
         string_val: "myo_piano_model/conv1/biases/Adam"
         string_val: "myo_piano_model/conv1/biases/Adam_1"
@@ -17699,12 +14534,6 @@ node {
         string_val: "myo_piano_model/conv3/weights"
         string_val: "myo_piano_model/conv3/weights/Adam"
         string_val: "myo_piano_model/conv3/weights/Adam_1"
-        string_val: "myo_piano_model/conv4/biases"
-        string_val: "myo_piano_model/conv4/biases/Adam"
-        string_val: "myo_piano_model/conv4/biases/Adam_1"
-        string_val: "myo_piano_model/conv4/weights"
-        string_val: "myo_piano_model/conv4/weights/Adam"
-        string_val: "myo_piano_model/conv4/weights/Adam_1"
         string_val: "myo_piano_model/fc5/biases"
         string_val: "myo_piano_model/fc5/biases/Adam"
         string_val: "myo_piano_model/fc5/biases/Adam_1"
@@ -17740,20 +14569,9 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 58
+            size: 47
           }
         }
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
-        string_val: ""
         string_val: ""
         string_val: ""
         string_val: ""
@@ -17816,17 +14634,6 @@ node {
     key: "dtypes"
     value {
       list {
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
-        type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
@@ -18361,7 +15168,7 @@ node {
 node {
   name: "save/Assign_15"
   op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta"
+  input: "myo_piano_model/conv1/biases"
   input: "save/RestoreV2:15"
   attr {
     key: "T"
@@ -18373,7 +15180,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
+        s: "loc:@myo_piano_model/conv1/biases"
       }
     }
   }
@@ -18393,7 +15200,7 @@ node {
 node {
   name: "save/Assign_16"
   op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam"
+  input: "myo_piano_model/conv1/biases/Adam"
   input: "save/RestoreV2:16"
   attr {
     key: "T"
@@ -18405,7 +15212,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
+        s: "loc:@myo_piano_model/conv1/biases"
       }
     }
   }
@@ -18425,7 +15232,7 @@ node {
 node {
   name: "save/Assign_17"
   op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/beta/Adam_1"
+  input: "myo_piano_model/conv1/biases/Adam_1"
   input: "save/RestoreV2:17"
   attr {
     key: "T"
@@ -18437,7 +15244,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/BatchNorm_3/beta"
+        s: "loc:@myo_piano_model/conv1/biases"
       }
     }
   }
@@ -18457,7 +15264,7 @@ node {
 node {
   name: "save/Assign_18"
   op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/moving_mean"
+  input: "myo_piano_model/conv1/weights"
   input: "save/RestoreV2:18"
   attr {
     key: "T"
@@ -18469,7 +15276,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_mean"
+        s: "loc:@myo_piano_model/conv1/weights"
       }
     }
   }
@@ -18489,7 +15296,7 @@ node {
 node {
   name: "save/Assign_19"
   op: "Assign"
-  input: "myo_piano_model/BatchNorm_3/moving_variance"
+  input: "myo_piano_model/conv1/weights/Adam"
   input: "save/RestoreV2:19"
   attr {
     key: "T"
@@ -18501,7 +15308,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/BatchNorm_3/moving_variance"
+        s: "loc:@myo_piano_model/conv1/weights"
       }
     }
   }
@@ -18521,7 +15328,7 @@ node {
 node {
   name: "save/Assign_20"
   op: "Assign"
-  input: "myo_piano_model/conv1/biases"
+  input: "myo_piano_model/conv1/weights/Adam_1"
   input: "save/RestoreV2:20"
   attr {
     key: "T"
@@ -18533,7 +15340,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/biases"
+        s: "loc:@myo_piano_model/conv1/weights"
       }
     }
   }
@@ -18553,7 +15360,7 @@ node {
 node {
   name: "save/Assign_21"
   op: "Assign"
-  input: "myo_piano_model/conv1/biases/Adam"
+  input: "myo_piano_model/conv2/biases"
   input: "save/RestoreV2:21"
   attr {
     key: "T"
@@ -18565,7 +15372,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/biases"
+        s: "loc:@myo_piano_model/conv2/biases"
       }
     }
   }
@@ -18585,7 +15392,7 @@ node {
 node {
   name: "save/Assign_22"
   op: "Assign"
-  input: "myo_piano_model/conv1/biases/Adam_1"
+  input: "myo_piano_model/conv2/biases/Adam"
   input: "save/RestoreV2:22"
   attr {
     key: "T"
@@ -18597,7 +15404,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/biases"
+        s: "loc:@myo_piano_model/conv2/biases"
       }
     }
   }
@@ -18617,7 +15424,7 @@ node {
 node {
   name: "save/Assign_23"
   op: "Assign"
-  input: "myo_piano_model/conv1/weights"
+  input: "myo_piano_model/conv2/biases/Adam_1"
   input: "save/RestoreV2:23"
   attr {
     key: "T"
@@ -18629,7 +15436,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/weights"
+        s: "loc:@myo_piano_model/conv2/biases"
       }
     }
   }
@@ -18649,7 +15456,7 @@ node {
 node {
   name: "save/Assign_24"
   op: "Assign"
-  input: "myo_piano_model/conv1/weights/Adam"
+  input: "myo_piano_model/conv2/weights"
   input: "save/RestoreV2:24"
   attr {
     key: "T"
@@ -18661,7 +15468,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/weights"
+        s: "loc:@myo_piano_model/conv2/weights"
       }
     }
   }
@@ -18681,7 +15488,7 @@ node {
 node {
   name: "save/Assign_25"
   op: "Assign"
-  input: "myo_piano_model/conv1/weights/Adam_1"
+  input: "myo_piano_model/conv2/weights/Adam"
   input: "save/RestoreV2:25"
   attr {
     key: "T"
@@ -18693,7 +15500,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv1/weights"
+        s: "loc:@myo_piano_model/conv2/weights"
       }
     }
   }
@@ -18713,7 +15520,7 @@ node {
 node {
   name: "save/Assign_26"
   op: "Assign"
-  input: "myo_piano_model/conv2/biases"
+  input: "myo_piano_model/conv2/weights/Adam_1"
   input: "save/RestoreV2:26"
   attr {
     key: "T"
@@ -18725,7 +15532,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/biases"
+        s: "loc:@myo_piano_model/conv2/weights"
       }
     }
   }
@@ -18745,7 +15552,7 @@ node {
 node {
   name: "save/Assign_27"
   op: "Assign"
-  input: "myo_piano_model/conv2/biases/Adam"
+  input: "myo_piano_model/conv3/biases"
   input: "save/RestoreV2:27"
   attr {
     key: "T"
@@ -18757,7 +15564,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/biases"
+        s: "loc:@myo_piano_model/conv3/biases"
       }
     }
   }
@@ -18777,7 +15584,7 @@ node {
 node {
   name: "save/Assign_28"
   op: "Assign"
-  input: "myo_piano_model/conv2/biases/Adam_1"
+  input: "myo_piano_model/conv3/biases/Adam"
   input: "save/RestoreV2:28"
   attr {
     key: "T"
@@ -18789,7 +15596,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/biases"
+        s: "loc:@myo_piano_model/conv3/biases"
       }
     }
   }
@@ -18809,7 +15616,7 @@ node {
 node {
   name: "save/Assign_29"
   op: "Assign"
-  input: "myo_piano_model/conv2/weights"
+  input: "myo_piano_model/conv3/biases/Adam_1"
   input: "save/RestoreV2:29"
   attr {
     key: "T"
@@ -18821,7 +15628,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/weights"
+        s: "loc:@myo_piano_model/conv3/biases"
       }
     }
   }
@@ -18841,7 +15648,7 @@ node {
 node {
   name: "save/Assign_30"
   op: "Assign"
-  input: "myo_piano_model/conv2/weights/Adam"
+  input: "myo_piano_model/conv3/weights"
   input: "save/RestoreV2:30"
   attr {
     key: "T"
@@ -18853,7 +15660,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/weights"
+        s: "loc:@myo_piano_model/conv3/weights"
       }
     }
   }
@@ -18873,7 +15680,7 @@ node {
 node {
   name: "save/Assign_31"
   op: "Assign"
-  input: "myo_piano_model/conv2/weights/Adam_1"
+  input: "myo_piano_model/conv3/weights/Adam"
   input: "save/RestoreV2:31"
   attr {
     key: "T"
@@ -18885,7 +15692,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv2/weights"
+        s: "loc:@myo_piano_model/conv3/weights"
       }
     }
   }
@@ -18905,7 +15712,7 @@ node {
 node {
   name: "save/Assign_32"
   op: "Assign"
-  input: "myo_piano_model/conv3/biases"
+  input: "myo_piano_model/conv3/weights/Adam_1"
   input: "save/RestoreV2:32"
   attr {
     key: "T"
@@ -18917,7 +15724,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/biases"
+        s: "loc:@myo_piano_model/conv3/weights"
       }
     }
   }
@@ -18937,7 +15744,7 @@ node {
 node {
   name: "save/Assign_33"
   op: "Assign"
-  input: "myo_piano_model/conv3/biases/Adam"
+  input: "myo_piano_model/fc5/biases"
   input: "save/RestoreV2:33"
   attr {
     key: "T"
@@ -18949,7 +15756,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/biases"
+        s: "loc:@myo_piano_model/fc5/biases"
       }
     }
   }
@@ -18969,7 +15776,7 @@ node {
 node {
   name: "save/Assign_34"
   op: "Assign"
-  input: "myo_piano_model/conv3/biases/Adam_1"
+  input: "myo_piano_model/fc5/biases/Adam"
   input: "save/RestoreV2:34"
   attr {
     key: "T"
@@ -18981,7 +15788,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/biases"
+        s: "loc:@myo_piano_model/fc5/biases"
       }
     }
   }
@@ -19001,7 +15808,7 @@ node {
 node {
   name: "save/Assign_35"
   op: "Assign"
-  input: "myo_piano_model/conv3/weights"
+  input: "myo_piano_model/fc5/biases/Adam_1"
   input: "save/RestoreV2:35"
   attr {
     key: "T"
@@ -19013,7 +15820,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/weights"
+        s: "loc:@myo_piano_model/fc5/biases"
       }
     }
   }
@@ -19033,7 +15840,7 @@ node {
 node {
   name: "save/Assign_36"
   op: "Assign"
-  input: "myo_piano_model/conv3/weights/Adam"
+  input: "myo_piano_model/fc5/weights"
   input: "save/RestoreV2:36"
   attr {
     key: "T"
@@ -19045,7 +15852,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/weights"
+        s: "loc:@myo_piano_model/fc5/weights"
       }
     }
   }
@@ -19065,7 +15872,7 @@ node {
 node {
   name: "save/Assign_37"
   op: "Assign"
-  input: "myo_piano_model/conv3/weights/Adam_1"
+  input: "myo_piano_model/fc5/weights/Adam"
   input: "save/RestoreV2:37"
   attr {
     key: "T"
@@ -19077,7 +15884,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv3/weights"
+        s: "loc:@myo_piano_model/fc5/weights"
       }
     }
   }
@@ -19097,7 +15904,7 @@ node {
 node {
   name: "save/Assign_38"
   op: "Assign"
-  input: "myo_piano_model/conv4/biases"
+  input: "myo_piano_model/fc5/weights/Adam_1"
   input: "save/RestoreV2:38"
   attr {
     key: "T"
@@ -19109,7 +15916,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/biases"
+        s: "loc:@myo_piano_model/fc5/weights"
       }
     }
   }
@@ -19129,7 +15936,7 @@ node {
 node {
   name: "save/Assign_39"
   op: "Assign"
-  input: "myo_piano_model/conv4/biases/Adam"
+  input: "myo_piano_model/fc6/biases"
   input: "save/RestoreV2:39"
   attr {
     key: "T"
@@ -19141,7 +15948,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/biases"
+        s: "loc:@myo_piano_model/fc6/biases"
       }
     }
   }
@@ -19161,7 +15968,7 @@ node {
 node {
   name: "save/Assign_40"
   op: "Assign"
-  input: "myo_piano_model/conv4/biases/Adam_1"
+  input: "myo_piano_model/fc6/biases/Adam"
   input: "save/RestoreV2:40"
   attr {
     key: "T"
@@ -19173,7 +15980,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/biases"
+        s: "loc:@myo_piano_model/fc6/biases"
       }
     }
   }
@@ -19193,7 +16000,7 @@ node {
 node {
   name: "save/Assign_41"
   op: "Assign"
-  input: "myo_piano_model/conv4/weights"
+  input: "myo_piano_model/fc6/biases/Adam_1"
   input: "save/RestoreV2:41"
   attr {
     key: "T"
@@ -19205,7 +16012,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/weights"
+        s: "loc:@myo_piano_model/fc6/biases"
       }
     }
   }
@@ -19225,7 +16032,7 @@ node {
 node {
   name: "save/Assign_42"
   op: "Assign"
-  input: "myo_piano_model/conv4/weights/Adam"
+  input: "myo_piano_model/fc6/weights"
   input: "save/RestoreV2:42"
   attr {
     key: "T"
@@ -19237,7 +16044,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/weights"
+        s: "loc:@myo_piano_model/fc6/weights"
       }
     }
   }
@@ -19257,7 +16064,7 @@ node {
 node {
   name: "save/Assign_43"
   op: "Assign"
-  input: "myo_piano_model/conv4/weights/Adam_1"
+  input: "myo_piano_model/fc6/weights/Adam"
   input: "save/RestoreV2:43"
   attr {
     key: "T"
@@ -19269,7 +16076,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/conv4/weights"
+        s: "loc:@myo_piano_model/fc6/weights"
       }
     }
   }
@@ -19289,7 +16096,7 @@ node {
 node {
   name: "save/Assign_44"
   op: "Assign"
-  input: "myo_piano_model/fc5/biases"
+  input: "myo_piano_model/fc6/weights/Adam_1"
   input: "save/RestoreV2:44"
   attr {
     key: "T"
@@ -19301,7 +16108,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@myo_piano_model/fc5/biases"
+        s: "loc:@myo_piano_model/fc6/weights"
       }
     }
   }
@@ -19321,360 +16128,8 @@ node {
 node {
   name: "save/Assign_45"
   op: "Assign"
-  input: "myo_piano_model/fc5/biases/Adam"
-  input: "save/RestoreV2:45"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc5/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_46"
-  op: "Assign"
-  input: "myo_piano_model/fc5/biases/Adam_1"
-  input: "save/RestoreV2:46"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc5/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_47"
-  op: "Assign"
-  input: "myo_piano_model/fc5/weights"
-  input: "save/RestoreV2:47"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc5/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_48"
-  op: "Assign"
-  input: "myo_piano_model/fc5/weights/Adam"
-  input: "save/RestoreV2:48"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc5/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_49"
-  op: "Assign"
-  input: "myo_piano_model/fc5/weights/Adam_1"
-  input: "save/RestoreV2:49"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc5/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_50"
-  op: "Assign"
-  input: "myo_piano_model/fc6/biases"
-  input: "save/RestoreV2:50"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_51"
-  op: "Assign"
-  input: "myo_piano_model/fc6/biases/Adam"
-  input: "save/RestoreV2:51"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_52"
-  op: "Assign"
-  input: "myo_piano_model/fc6/biases/Adam_1"
-  input: "save/RestoreV2:52"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/biases"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_53"
-  op: "Assign"
-  input: "myo_piano_model/fc6/weights"
-  input: "save/RestoreV2:53"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_54"
-  op: "Assign"
-  input: "myo_piano_model/fc6/weights/Adam"
-  input: "save/RestoreV2:54"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_55"
-  op: "Assign"
-  input: "myo_piano_model/fc6/weights/Adam_1"
-  input: "save/RestoreV2:55"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@myo_piano_model/fc6/weights"
-      }
-    }
-  }
-  attr {
-    key: "use_locking"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "validate_shape"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "save/Assign_56"
-  op: "Assign"
   input: "train_step/beta1_power"
-  input: "save/RestoreV2:56"
+  input: "save/RestoreV2:45"
   attr {
     key: "T"
     value {
@@ -19703,10 +16158,10 @@ node {
   }
 }
 node {
-  name: "save/Assign_57"
+  name: "save/Assign_46"
   op: "Assign"
   input: "train_step/beta2_power"
-  input: "save/RestoreV2:57"
+  input: "save/RestoreV2:46"
   attr {
     key: "T"
     value {
@@ -19784,17 +16239,6 @@ node {
   input: "^save/Assign_44"
   input: "^save/Assign_45"
   input: "^save/Assign_46"
-  input: "^save/Assign_47"
-  input: "^save/Assign_48"
-  input: "^save/Assign_49"
-  input: "^save/Assign_50"
-  input: "^save/Assign_51"
-  input: "^save/Assign_52"
-  input: "^save/Assign_53"
-  input: "^save/Assign_54"
-  input: "^save/Assign_55"
-  input: "^save/Assign_56"
-  input: "^save/Assign_57"
 }
 node {
   name: "init"
@@ -19814,11 +16258,6 @@ node {
   input: "^myo_piano_model/BatchNorm_2/beta/Assign"
   input: "^myo_piano_model/BatchNorm_2/moving_mean/Assign"
   input: "^myo_piano_model/BatchNorm_2/moving_variance/Assign"
-  input: "^myo_piano_model/conv4/weights/Assign"
-  input: "^myo_piano_model/conv4/biases/Assign"
-  input: "^myo_piano_model/BatchNorm_3/beta/Assign"
-  input: "^myo_piano_model/BatchNorm_3/moving_mean/Assign"
-  input: "^myo_piano_model/BatchNorm_3/moving_variance/Assign"
   input: "^myo_piano_model/fc5/weights/Assign"
   input: "^myo_piano_model/fc5/biases/Assign"
   input: "^myo_piano_model/fc6/weights/Assign"
@@ -19843,12 +16282,6 @@ node {
   input: "^myo_piano_model/conv3/biases/Adam_1/Assign"
   input: "^myo_piano_model/BatchNorm_2/beta/Adam/Assign"
   input: "^myo_piano_model/BatchNorm_2/beta/Adam_1/Assign"
-  input: "^myo_piano_model/conv4/weights/Adam/Assign"
-  input: "^myo_piano_model/conv4/weights/Adam_1/Assign"
-  input: "^myo_piano_model/conv4/biases/Adam/Assign"
-  input: "^myo_piano_model/conv4/biases/Adam_1/Assign"
-  input: "^myo_piano_model/BatchNorm_3/beta/Adam/Assign"
-  input: "^myo_piano_model/BatchNorm_3/beta/Adam_1/Assign"
   input: "^myo_piano_model/fc5/weights/Adam/Assign"
   input: "^myo_piano_model/fc5/weights/Adam_1/Assign"
   input: "^myo_piano_model/fc5/biases/Adam/Assign"
