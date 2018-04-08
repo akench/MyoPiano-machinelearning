@@ -14,40 +14,49 @@ label_placeholder = tf.placeholder(shape=[None], dtype = tf.int64)
 keep_prob_placeholder = tf.placeholder(shape = (), dtype = tf.float32, name='keep_prob')
 
 labels = {
-	0: 'None',
-	1: 'thumb',
-	2: 'index',
-	3: 'middle',
-	4: 'ring',
-	5: 'pinkie'
+    0: 'none',
+    1: 'thumb',
+    2: 'index',
+    3: 'middle',
+    4: 'ring',
+    5: 'pinkie'
+}
+
+labels_1 = {
+    'none': 0,
+    'thumb': 1,
+    'index': 2,
+    'middle': 3,
+    'ring': 4,
+    'pinkie': 5
 }
 
 
 MODEL_NAME = 'myo_piano_model'
 
 def model(net, keep_prob):
-	net = tf.reshape(net, [-1, 100, 8, 1])
+    net = tf.reshape(net, [-1, 100, 8, 1])
 
 
-	with tf.variable_scope(MODEL_NAME):
-		with slim.arg_scope([slim.conv2d], padding='SAME', weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
-			with slim.arg_scope([slim.fully_connected], weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
-				
-				net = slim.conv2d(net, 100, [20,1], scope='conv1')
-				net = slim.max_pool2d(net, [2,2], scope='pool1')
-				net = slim.batch_norm(net)
-				net = slim.conv2d(net, 50, [20,1], scope='conv2')
-				net = slim.max_pool2d(net, [2,2], scope='pool2')
-				net = slim.batch_norm(net)
-				net = slim.conv2d(net, 20, [20,1], scope='conv3')
-				net = slim.max_pool2d(net, [2,2], scope='pool3')
-				net = slim.batch_norm(net)
-				net = slim.flatten(net, scope='flatten4')
-				net = slim.fully_connected(net, 500, activation_fn = tf.nn.sigmoid, scope='fc5')
-				net = slim.dropout(net, keep_prob = keep_prob, scope='dropout6')
-				net = slim.fully_connected(net, 6, activation_fn=None, scope='fc6')
+    with tf.variable_scope(MODEL_NAME):
+        with slim.arg_scope([slim.conv2d], padding='SAME', weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
+            with slim.arg_scope([slim.fully_connected], weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
+                
+                net = slim.conv2d(net, 100, [20,1], scope='conv1')
+                net = slim.max_pool2d(net, [2,2], scope='pool1')
+                net = slim.batch_norm(net)
+                net = slim.conv2d(net, 50, [20,1], scope='conv2')
+                net = slim.max_pool2d(net, [2,2], scope='pool2')
+                net = slim.batch_norm(net)
+                net = slim.conv2d(net, 20, [20,1], scope='conv3')
+                net = slim.max_pool2d(net, [2,2], scope='pool3')
+                net = slim.batch_norm(net)
+                net = slim.flatten(net, scope='flatten4')
+                net = slim.fully_connected(net, 500, activation_fn = tf.nn.sigmoid, scope='fc5')
+                net = slim.dropout(net, keep_prob = keep_prob, scope='dropout6')
+                net = slim.fully_connected(net, 6, activation_fn=None, scope='fc6')
 
-	return net
+    return net
 
 
 
@@ -55,6 +64,8 @@ def model(net, keep_prob):
 def make_prediction(class_name):
     data = pickle.load(open('test_data/' + class_name + '.p', 'rb'))
     prediction = model(data_placeholder, keep_prob_placeholder)
+
+    print(len(data) , 'is length of dATA!!!')
 
     with tf.Session() as sess:
 
@@ -69,14 +80,27 @@ def make_prediction(class_name):
 
         softmax_output = tf.nn.softmax(logits = logits_arr)
         probs = sess.run(softmax_output)
-        print('probs = ', probs)
+        # print('probs = ', probs)
 
-        n = sess.run(tf.argmax(softmax_output))
+        n = [np.argmax(x) for x in probs] 
+        print(n)
 
         try:
             print([labels[p] for p in n])
         except:
             print(labels[n])
 
+        sum=0
+        nones=0
+        for label in n:
+            if label == labels_1[class_name]:
+                sum += 1
+            elif label=='none':
+                nones += 1
+            
+        
+        print('percent correct = ', sum/len(n))
+        print('perc none=', nones/len(n))
 
-make_prediction('middle')
+
+make_prediction('pinkie')

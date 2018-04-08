@@ -6172,105 +6172,6 @@ node {
   }
 }
 node {
-  name: "myo_piano_model/fc6_1/weights/tag"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "myo_piano_model/fc6_1/weights"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/fc6_1/weights"
-  op: "HistogramSummary"
-  input: "myo_piano_model/fc6_1/weights/tag"
-  input: "myo_piano_model/fc6/weights/read"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "myo_piano_model/fc6_1/bias/tag"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "myo_piano_model/fc6_1/bias"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/fc6_1/bias"
-  op: "HistogramSummary"
-  input: "myo_piano_model/fc6_1/bias/tag"
-  input: "myo_piano_model/fc6/biases/read"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "myo_piano_model/fc6_1/output/tag"
-  op: "Const"
-  attr {
-    key: "dtype"
-    value {
-      type: DT_STRING
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_STRING
-        tensor_shape {
-        }
-        string_val: "myo_piano_model/fc6_1/output"
-      }
-    }
-  }
-}
-node {
-  name: "myo_piano_model/fc6_1/output"
-  op: "HistogramSummary"
-  input: "myo_piano_model/fc6_1/output/tag"
-  input: "myo_piano_model/fc6/BiasAdd"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
   name: "output"
   op: "Identity"
   input: "myo_piano_model/fc6/BiasAdd"
@@ -14976,15 +14877,12 @@ node {
   name: "Merge/MergeSummary"
   op: "MergeSummary"
   input: "input_1"
-  input: "myo_piano_model/fc6_1/weights"
-  input: "myo_piano_model/fc6_1/bias"
-  input: "myo_piano_model/fc6_1/output"
   input: "total_loss_1"
   input: "accuracy_1"
   attr {
     key: "N"
     value {
-      i: 6
+      i: 3
     }
   }
 }

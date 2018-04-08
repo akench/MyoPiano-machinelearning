@@ -120,28 +120,31 @@ def make_data():
 
             all_image_data = []
 
-            curr_image = []
 
-            start_time = timestamps[0]
-            data_index = 0
-            while data_index < len(emg_data):
+            # for offset in [10, 50, 90, 130]:
+            for offset in [0]:
+                curr_image = []
 
-                #half a second
-                if timestamps[data_index] - start_time >= 500000:
+                start_time = timestamps[0]
+                data_index = 0
+                while data_index < len(emg_data):
 
-                    curr_image = reformat_curr_image(curr_image)
-                    all_image_data.append(curr_image)
-                    curr_image = []
-                    start_time = timestamps[data_index]
+                    #half a second
+                    if timestamps[data_index] - start_time >= 500000:
 
-                    data_index += random.randint(10, 50)
+                        curr_image = reformat_curr_image(curr_image)
+                        all_image_data.append(curr_image)
+                        curr_image = []
+                        start_time = timestamps[data_index]
 
-                else:
-                    curr_image += emg_data[data_index]
-                    data_index += 1
+                        data_index += offset
 
-            #while loop done
-            all_data_per_class += all_image_data
+                    else:
+                        curr_image += emg_data[data_index]
+                        data_index += 1
+
+                #while loop done
+                all_data_per_class += all_image_data
 
         #end of for loop for all files in that class dir
         ALL_OF_THE_DATA += all_data_per_class
@@ -160,6 +163,8 @@ def make_data():
             f.write(str(s) + '\n')
 
 
+    print(len(ALL_OF_THE_LABELS))
+    ALL_OF_THE_DATA, ALL_OF_THE_LABELS = simultaneous_shuffle(ALL_OF_THE_DATA, ALL_OF_THE_LABELS)
 
     pickle.dump(ALL_OF_THE_DATA, open('data/all_data.p', 'wb'))
     pickle.dump(ALL_OF_THE_LABELS, open('data/all_labels.p', 'wb'))
@@ -182,20 +187,24 @@ def random_scaling(data):
 
 def augment_data():
 
-    original_data = pickle.load(open('data/all_data.p', 'rb'))
-    all_labels = pickle.load(open('data/all_labels.p', 'rb'))
+    # original_data = pickle.load(open('data/all_data.p', 'rb'))
+    # all_labels = pickle.load(open('data/all_labels.p', 'rb'))
 
 
-    augmented_1 = random_scaling(original_data)
-    augmented_2 = random_scaling(augmented_1)
+    # augmented_1 = random_scaling(original_data)
+    # augmented_2 = random_scaling(augmented_1)
 
-    augmented_data = original_data + augmented_1 + augmented_2
-    all_labels = all_labels + all_labels + all_labels
+    # augmented_data = original_data + augmented_1 + augmented_2
+    # all_labels = all_labels + all_labels + all_labels
 
-    pickle.dump(augmented_data, open('data/all_data.p', 'wb'))
-    pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
 
-    print('augmented',len(augmented_data))
+    # pickle.dump(original_data, open('data/all_data.p', 'wb'))
+    # pickle.dump(all_labels, open('data/all_labels.p', 'wb'))
+
+
+    # print('augmented',len(augmented_data))
+
+    return
 
 
 
@@ -228,7 +237,7 @@ def normalize_using_pop_data(data):
 
 def make_data_per_class_testing(class_name):
 
-    file_paths = glob.glob('test_data/' + class_name + '/emg*.csv')
+    file_paths = glob.glob('data/' + class_name + '/emg*.csv')
 
     ALL_IMAGES = []
 
@@ -243,31 +252,32 @@ def make_data_per_class_testing(class_name):
 
 
         #ignore the first and last one second of data
-        emg_data = emg_data[250 : len(emg_data) - 200]
-        timestamps = timestamps[250 : len(timestamps) - 200]
+        emg_data = emg_data[200 : len(emg_data) - 200]
+        timestamps = timestamps[200 : len(timestamps) - 200]
 
+        for offset in [0]:
 
-        curr_image = []
+            curr_image = []
 
-        start_time = timestamps[0]
-        data_index = 0
+            start_time = timestamps[0]
+            data_index = 0
 
-        #rows in csv file
-        while data_index < len(emg_data):
+            #rows in csv file
+            while data_index < len(emg_data):
 
-            #half a second
-            if timestamps[data_index] - start_time >= 500000:
+                #half a second
+                if timestamps[data_index] - start_time >= 500000:
 
-                curr_image = reformat_curr_image(curr_image)
-                ALL_IMAGES.append(curr_image)
-                curr_image = []
-                start_time = timestamps[data_index]
+                    curr_image = reformat_curr_image(curr_image)
+                    ALL_IMAGES.append(curr_image)
+                    curr_image = []
+                    start_time = timestamps[data_index]
 
-            else:
-                curr_image += emg_data[data_index]
+                    data_index += offset
 
-
-            data_index += 1
+                else:
+                    curr_image += emg_data[data_index]
+                    data_index += 1
 
     
     ALL_IMAGES = normalize_using_pop_data(ALL_IMAGES)
@@ -328,5 +338,5 @@ make_data()
 augment_data()
 prepare_data_to_split()
 
-for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
-    make_data_per_class_testing(x)
+# for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
+#     make_data_per_class_testing(x)

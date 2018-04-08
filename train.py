@@ -15,7 +15,6 @@ from data_utils import DataUtil
 MODEL_NAME = 'myo_piano_model'
 data_placeholder = tf.placeholder(shape = [None, 100*8], dtype = tf.float32, name='input')
 labels_placeholder = tf.placeholder(shape = [None], dtype = tf.int64)
-keep_prob_placeholder = tf.placeholder(shape = (), dtype = tf.float32, name='keep_prob')
 
 logs_path = "/tmp/myo_log"
 #command to use TENSORBOARD
@@ -44,12 +43,12 @@ labels = {
 
 
 
-def model(net, keep_prob):
+def model(net):
 	net = tf.reshape(net, [-1, 100, 8, 1])
 
 	tf.summary.image('input', net, 10)
 
-	with tf.variable_scope(MODEL_NAME):
+	with tf.variable_scope(MODEL_NAME, reuse=tf.AUTO_REUSE):
 		with slim.arg_scope([slim.conv2d], padding='SAME', weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
 			with slim.arg_scope([slim.fully_connected], weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
 				
@@ -64,16 +63,7 @@ def model(net, keep_prob):
 				net = slim.batch_norm(net)
 				net = slim.flatten(net, scope='flatten4')
 				net = slim.fully_connected(net, 500, activation_fn = tf.nn.sigmoid, scope='fc5')
-				net = slim.dropout(net, keep_prob = keep_prob, scope='dropout6')
 				net = slim.fully_connected(net, 6, activation_fn=None, scope='fc6')
-
-				fc6_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, MODEL_NAME + '/fc6')
-				print(fc6_vars)
-
-				with tf.name_scope('fc6'):
-					tf.summary.histogram('weights', fc6_vars[0])
-					tf.summary.histogram('bias', fc6_vars[1])
-					tf.summary.histogram('output', net)
 
 	output = tf.identity(net, name='output')
 	return net
@@ -87,7 +77,7 @@ def train():
 
 
 
-	prediction = model(data_placeholder, keep_prob_placeholder)
+	prediction = model(data_placeholder)
 
 	with tf.name_scope('total_loss'):
 		total_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
@@ -118,45 +108,23 @@ def train():
 		init = tf.global_variables_initializer()
 		init.run()
 
-		#FOR TENSORBOARD, CREATES A LOG WRITER OBJECT
-		# writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())
-		train_writer = tf.summary.FileWriter(logs_path + '/train', sess.graph)
-		test_writer = tf.summary.FileWriter(logs_path + '/test', sess.graph)
-
 		tf.train.write_graph(sess.graph_def, 'out', MODEL_NAME + '.pbtxt', True)
 
 		img_batch, labels_batch = data_util.get_next_batch()
 		while img_batch is not None:
 
-			'''VALIDATION ACCURACY'''
-			if data_util.global_num % 30 == 0:
-				# print('inside val')
-				with tf.name_scope('val_acc'):
-					_, summary_val = sess.run([accuracy, summary_op],
-									feed_dict = {data_placeholder: data_util.images_val,
-									labels_placeholder: data_util.labels_val,
-									keep_prob_placeholder: 1.0})
-				test_writer.add_summary(summary_val, data_util.global_num)
-
-				saver.save(sess, 'out/' + MODEL_NAME + '.ckpt')
-
-
+			if data_util.global_num % 100 == 0:
+				print('curr acc:',accuracy.eval({data_placeholder: data_util.images_val[:100],
+											labels_placeholder: data_util.labels_val[:100]}))
 
 			'''ACTUAL TRAINING'''
 			
 
 			_, summary = sess.run([train_step, summary_op],
 												feed_dict = {data_placeholder: img_batch,
-												labels_placeholder: labels_batch,
-												keep_prob_placeholder: 0.5})
+												labels_placeholder: labels_batch})
 
 
-			train_writer.add_summary(summary, data_util.global_num)
-
-
-			print('curr acc:',accuracy.eval({data_placeholder: data_util.images_val[:100],
-											labels_placeholder: data_util.labels_val[:100],
-											keep_prob_placeholder: 1.0}))
 
 			img_batch, labels_batch = data_util.get_next_batch()
 
@@ -167,18 +135,10 @@ def train():
 
 
 
-		with tf.name_scope('val_acc'):
-			_, summary_val = sess.run([accuracy, summary_op],
-							feed_dict = {data_placeholder: data_util.images_val,
-							labels_placeholder: data_util.labels_val,
-							keep_prob_placeholder: 1.0})
-		test_writer.add_summary(summary_val, data_util.global_num)
-
 		#TRAINING DONE!!!!!!!!!!!!!!
 		#VAL IMAGES ALREADY NORMALIZED
 		print('\n\nfinal Accuracy:',accuracy.eval({data_placeholder: data_util.images_val,
-											labels_placeholder: data_util.labels_val,
-											keep_prob_placeholder: 1.0}))
+											labels_placeholder: data_util.labels_val}))
 
 
 		
@@ -198,7 +158,6 @@ def main():
 
 	input_node_name = 'input'
 	output_node_name = 'output'
-	keep_prob_name = 'keep_prob'
 
 	train()
 
