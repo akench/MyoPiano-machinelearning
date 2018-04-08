@@ -236,7 +236,7 @@ def normalize_using_pop_data(data):
 
 def make_data_per_class_testing(class_name):
 
-    file_paths = glob.glob('data/' + class_name + '/emg*.csv')
+    file_paths = glob.glob('raw_data/' + class_name + '/emg*.csv')
 
     ALL_IMAGES = []
 
@@ -280,6 +280,7 @@ def make_data_per_class_testing(class_name):
 
     
     ALL_IMAGES = normalize_using_pop_data(ALL_IMAGES)
+    print(len(ALL_IMAGES))
     pickle.dump(ALL_IMAGES, open('test_data/' + class_name + '.p', 'wb'))
 
 

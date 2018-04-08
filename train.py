@@ -73,7 +73,7 @@ def model(net):
 
 def train():
 
-	data_util = DataUtil('processed_data', batch_size = 128, num_epochs = 20)
+	data_util = DataUtil('processed_data', batch_size = 64, num_epochs = 20)
 
 
 
