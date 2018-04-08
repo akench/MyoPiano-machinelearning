@@ -192,9 +192,22 @@ def augment_data():
 
 
     augmented_1 = random_scaling(original_data)
+    
+    noise = np.random.rand(len(original_data), 800) * 20
+    noise -= 10
 
-    augmented_data = original_data + augmented_1
-    all_labels = all_labels + all_labels
+    original_np = np.asarray(original_data)
+
+    augmented_2 = original_np + noise
+    augmented_2 = augmented_2.tolist()
+
+    
+    original_data = list(original_data)
+    augmented_1 = list(augmented_1)
+    augmented_2 = list(augmented_2)
+
+    augmented_data = original_data + augmented_1 + augmented_2
+    all_labels = all_labels + all_labels + all_labels
 
 
     pickle.dump(original_data, open('data/all_data.p', 'wb'))
@@ -236,7 +249,7 @@ def normalize_using_pop_data(data):
 
 def make_data_per_class_testing(class_name):
 
-    file_paths = glob.glob('raw_data/' + class_name + '/emg*.csv')
+    file_paths = glob.glob('test_data/' + class_name + '/emg*.csv')
 
     ALL_IMAGES = []
 
@@ -338,5 +351,5 @@ def prepare_data_to_split():
 # augment_data()
 # prepare_data_to_split()
 
-# for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
-#     make_data_per_class_testing(x)
+for x in ['none', 'thumb', 'index', 'middle', 'ring', 'pinkie']:
+    make_data_per_class_testing(x)

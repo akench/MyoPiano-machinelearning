@@ -41,14 +41,11 @@ def model(net):
         with slim.arg_scope([slim.conv2d], padding='SAME', weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
             with slim.arg_scope([slim.fully_connected], weights_initializer=tf.contrib.layers.variance_scaling_initializer(uniform = False), weights_regularizer=slim.l2_regularizer(0.05)):
                 
-                net = slim.conv2d(net, 100, [5,5], scope='conv1')
+                net = slim.conv2d(net, 100, [20,8], scope='conv1')
                 net = slim.max_pool2d(net, [2,2], scope='pool1')
                 net = slim.batch_norm(net)
-                net = slim.conv2d(net, 50, [5,5], scope='conv2')
+                net = slim.conv2d(net, 50, [15,4], scope='conv2')
                 net = slim.max_pool2d(net, [2,2], scope='pool2')
-                net = slim.batch_norm(net)
-                net = slim.conv2d(net, 20, [5,5], scope='conv3')
-                net = slim.max_pool2d(net, [2,2], scope='pool3')
                 net = slim.batch_norm(net)
                 net = slim.flatten(net, scope='flatten4')
                 net = slim.fully_connected(net, 500, activation_fn = tf.nn.sigmoid, scope='fc5')
